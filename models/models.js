@@ -4,6 +4,7 @@ const {DataTypes} = require('sequelize')
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
+    username: {type: DataTypes.STRING, unique: true},
 })
 
 
@@ -40,8 +41,8 @@ const FilmGenre = sequelize.define('film_genre',{
 User.hasOne(Booking)
 Booking.belongsTo(User)
 
-Booking.hasOne(Film)
-Film.belongsTo(Booking)
+Film.hasOne(Booking)
+Booking.belongsTo(Film)
 
 Film.belongsToMany(Date, {through: FilmDate})
 Date.belongsToMany(Film, {through: FilmDate})

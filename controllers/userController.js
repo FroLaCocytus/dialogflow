@@ -5,15 +5,28 @@ const { User } = require('../models/models');
 class userController {
 
     async adduser(req, res){
-        const {name} = req.body
-        const user = await User.create({name})
-        return res.json(user)
+        try {
+            const {name, username} = req.body
+
+            const user = await User.create({name, username})
+            return res.json(user)
+        } catch(e) {
+            return res.json({message: 'user уже есть'})
+        }
     }
 
-    async userinfo(req, res){
-        const {sesion} = req.body
-        const user = await User.create({name})
-        return res.json(user)
+    async checkuser(req, res){
+        try {
+            const {username} = req.body
+            const user = await User.findOne({
+                where: { username: username }
+            });
+    
+            return res.json(user)
+        } catch (e) {
+            return res.json({user: null})
+        }
+
     }
 }
 module.exports = new userController()

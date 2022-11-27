@@ -22,10 +22,10 @@ class dateController {
                 include: Film
             });
 
-            const filmmap = films.films.map(item => item = item.name).join('\n')
+            const filmmap = films.films.map((item, index) => item = `${index+1}) ${item.name}\n`).join('')
     
             return res.json({
-                dates: moment(date).set({hour:0,minute:0,second:0,millisecond:0}).format('YYYY-MM-DD'),
+                date: moment(date).set({hour:0,minute:0,second:0,millisecond:0}).format('DD MMMM YYYY', 'ru'),
                 films: filmmap
             })
 

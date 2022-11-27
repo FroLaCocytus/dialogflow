@@ -1,10 +1,14 @@
 const { QueryTypes } = require('sequelize');
+const moment = require('moment');
+moment.lang('ru');
+
 const sequelize = require('../db');
 const { Film, Date, Genre } = require('../models/models');
 
 class filmController {
 
     async getOne(req, res){
+        
         try {
             const {name} = req.body
 
@@ -12,10 +16,8 @@ class filmController {
                 where: { name: name },
                 include: [Date, Genre]
             });
-
-
-            const datemap = result.dates.map(item => item = item.date).join('\n')
-            const genremap = result.genres.map(item => item = item.genre).join('\n')
+            const datemap = result.dates.map((item, index) => item = `${index+1}) ${moment(item.date).format('DD MMMM YYYY HH:mm', 'ru')}\n`).join('')
+            const genremap = result.genres.map(item => item = item.genre).join(', ')
 
             return res.json({
                 name: result.name,

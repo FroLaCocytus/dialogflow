@@ -14,7 +14,7 @@ class genreController {
                 include: Film
             });
     
-            const filmmap = films.films.map(item => item = item.name).join('\n')
+            const filmmap = films.films.map((item, index) => item = `${index+1}) ${item.name}\n`).join('')
     
             return res.json({
                 genre: films.genre,
@@ -32,7 +32,7 @@ class genreController {
         const genres = await Genre.findAll({
             attributes: ['genre']
         })
-        return res.json({genres})
+        return res.json(genres)
 
     }
 }
