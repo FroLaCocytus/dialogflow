@@ -10,7 +10,7 @@ class dateController {
         try {
             const {date} = req.body
 
-            const films = await Date.findOne({
+            const films = await Date.findAll({
                 where: { 
                     date: {
                         [Op.and]: {
@@ -21,16 +21,23 @@ class dateController {
                 },
                 include: Film
             });
+            let filmmap = []
+            for (let i = 0; i < Object.keys(films).length; i++) {
+                if (!filmmap.includes(films[i].films[0].dataValues.name)){
+                    filmmap.push(films[i].films[0].dataValues.name)
+                }
+            }
 
-            const filmmap = films.films.map((item, index) => item = `${index+1}) ${item.name}\n`).join('')
-    
+            filmmap = filmmap.map((item, index) => item = `${index+1}) ${item}\n`).join('')
+            console.log(filmmap)
+
             return res.json({
                 date: moment(date).set({hour:0,minute:0,second:0,millisecond:0}).format('DD MMMM YYYY', 'ru'),
                 films: filmmap
             })
 
         } catch(e) {
-            return res.json({message: 'В указанную дату, фильмов нету, попробуйте другую:)'})
+            return res.json({empty: null})
         }
 
     }
