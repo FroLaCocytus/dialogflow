@@ -10,7 +10,9 @@ const User = sequelize.define('user', {
 
 const Booking = sequelize.define('booking',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    info: {type: DataTypes.STRING},
+    film_name: {type: DataTypes.STRING},
+    date_info: {type: DataTypes.DATE},
+    ticket_count: {type: DataTypes.INTEGER}
 })
 
 const Film = sequelize.define('film',{

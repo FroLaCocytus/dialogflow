@@ -16,6 +16,11 @@ class filmController {
                 where: { name: name },
                 include: [Date, Genre]
             });
+            if (result == null){ 
+            return res.json({
+                empty: true
+            })
+            }
             const datemap = result.dates.map((item) => item = moment(item.date))
             const genremap = result.genres.map(item => item = item.genre)
 
@@ -28,7 +33,7 @@ class filmController {
             })
 
         } catch(e){
-            return res.json({message: 'Такого фильма не существует, попробуйте другой;)'})
+            return res.json({message: 'Что то не так'})
         }
     }
 
@@ -39,7 +44,7 @@ class filmController {
             })
             return res.json(films)
         } catch(e){
-            return res.json({empty: 'empty'})
+            return res.json({message: 'Что то не так'})
         }
     }
 

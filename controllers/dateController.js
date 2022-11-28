@@ -36,7 +36,7 @@ class dateController {
             })
 
         } catch(e) {
-            return res.json({empty: null})
+            return res.json({message: 'Что то не так'})
         }
 
     }

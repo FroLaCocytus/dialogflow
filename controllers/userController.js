@@ -11,7 +11,7 @@ class userController {
             const user = await User.create({name, username})
             return res.json(user)
         } catch(e) {
-            return res.json({empty: null})
+            return res.json({message: 'Что то не так'})
         }
     }
 
@@ -28,10 +28,10 @@ class userController {
             } else {
                 return res.json({
                     user: false
-                }) 
+                })
             }
         } catch (e) {
-            return res.json({empty: null})
+            return res.json({message: 'Что то не так'})
         }
 
     }

@@ -21,7 +21,7 @@ class genreController {
                 films: filmmap
             })
         } catch(e) {
-            return res.json({empty: null})
+            return res.json({message: 'Что то не так'})
 
         }
 
@@ -29,11 +29,15 @@ class genreController {
     }
 
     async getAll(req, res){
-        const genres = await Genre.findAll({
-            attributes: ['genre']
-        })
-        return res.json(genres)
+        try {
+            const genres = await Genre.findAll({
+                attributes: ['genre']
+            })
+            return res.json(genres)
 
+        } catch (e) {
+            return res.json({message: 'Что то не так'})
+        }
     }
 }
 module.exports = new genreController()
