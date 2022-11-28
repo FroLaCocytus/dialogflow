@@ -16,8 +16,8 @@ class filmController {
                 where: { name: name },
                 include: [Date, Genre]
             });
-            const datemap = result.dates.map((item, index) => item = `${index+1}) ${moment(item.date).format('DD MMMM YYYY HH:mm', 'ru')}\n`).join('')
-            const genremap = result.genres.map(item => item = item.genre).join(', ')
+            const datemap = result.dates.map((item) => item = moment(item.date))
+            const genremap = result.genres.map(item => item = item.genre)
 
             return res.json({
                 name: result.name,
@@ -39,7 +39,7 @@ class filmController {
             })
             return res.json(films)
         } catch(e){
-            return res.json({message: 'Лёха, ты не добавил фильмы'})
+            return res.json({empty: 'empty'})
         }
     }
 

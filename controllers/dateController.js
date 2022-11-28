@@ -28,11 +28,10 @@ class dateController {
                 }
             }
 
-            filmmap = filmmap.map((item, index) => item = `${index+1}) ${item}\n`).join('')
-            console.log(filmmap)
+            filmmap = filmmap.map((item) => item = `• ${item}\n`).join('')
 
             return res.json({
-                date: moment(date).set({hour:0,minute:0,second:0,millisecond:0}).format('DD MMMM YYYY', 'ru'),
+                date: moment(date).set({hour:0,minute:0,second:0,millisecond:0}),
                 films: filmmap
             })
 

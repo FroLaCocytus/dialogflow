@@ -1,8 +1,6 @@
 const { QueryTypes } = require('sequelize');
 const sequelize = require('../db');
-const { Film, Date, Genre, FilmDate, FilmGenre } = require('../models/models');
-
-const time = '2022-01-08 23:00:00+03'
+const { Film, Date, Genre } = require('../models/models');
 
 class appendController {
 
@@ -25,7 +23,6 @@ class appendController {
             }
 
             for (let i = 0; i < Object.keys(genre).length; i++) { 
-                console.log(i)
                 const res = await Genre.findOne({where: { genre: genre[i]}})
                 if (res == null) {
                     const val = await Genre.create({ genre: genre[i]})

@@ -11,7 +11,7 @@ class userController {
             const user = await User.create({name, username})
             return res.json(user)
         } catch(e) {
-            return res.json({message: 'user уже есть'})
+            return res.json({empty: null})
         }
     }
 
@@ -21,10 +21,17 @@ class userController {
             const user = await User.findOne({
                 where: { username: username }
             });
-    
-            return res.json(user)
+            if (user != null){
+                return res.json({
+                    user: true
+                })
+            } else {
+                return res.json({
+                    user: false
+                }) 
+            }
         } catch (e) {
-            return res.json({user: null})
+            return res.json({empty: null})
         }
 
     }
