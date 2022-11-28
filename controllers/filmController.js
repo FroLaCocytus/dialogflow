@@ -1,6 +1,6 @@
 const { QueryTypes } = require('sequelize');
 const moment = require('moment');
-moment.lang('ru');
+moment.locale('ru');
 
 const sequelize = require('../db');
 const { Film, Date, Genre } = require('../models/models');
