@@ -12,7 +12,8 @@ const Booking = sequelize.define('booking',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     film_name: {type: DataTypes.STRING},
     date_info: {type: DataTypes.DATE},
-    ticket_count: {type: DataTypes.INTEGER}
+    ticket_count: {type: DataTypes.INTEGER},
+    is_confirmed: {type: DataTypes.BOOLEAN, defaultValue: false}
 })
 
 const Film = sequelize.define('film',{

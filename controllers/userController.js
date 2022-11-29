@@ -23,7 +23,8 @@ class userController {
             });
             if (user != null){
                 return res.json({
-                    user: true
+                    user: true,
+                    name: user.name
                 })
             } else {
                 return res.json({
